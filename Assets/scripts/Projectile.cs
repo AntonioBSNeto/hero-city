@@ -3,7 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float lifeTime = 2f;
-
+    public int damage = 100;
     void Start()
     {
         Destroy(gameObject, lifeTime);
@@ -11,11 +11,24 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verifica se colidiu com um inimigo e o destrói
-        if (collision.CompareTag("Enemy"))
+        // Verifica se colidiu com um inimigo e o destrï¿½i
+        // if (collision.CompareTag("Enemy"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     Destroy(gameObject);
+        // }
+
+
+        if(collision.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            EnemyAttrs enemy = collision.GetComponent<EnemyAttrs>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
+        
     }
 }
