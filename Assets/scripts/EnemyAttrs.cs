@@ -34,5 +34,6 @@ public class EnemyAttrs : MonoBehaviour
             enemyRenderer.material.color = Color.red;
         }
         Destroy(gameObject);
+        killCountController.Pontuacao++;
     }
 }
