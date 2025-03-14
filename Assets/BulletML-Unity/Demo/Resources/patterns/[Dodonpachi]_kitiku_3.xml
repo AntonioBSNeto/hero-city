@@ -6,14 +6,19 @@
 
 	<action label="top1">
 		<repeat>
-			<times>200+$rank*200</times>
+			<times>2</times> <!-- Loop 2 vezes -->
 			<action>
-				<fire>
-					<direction type="aim">-50+$rand*100</direction>
-					<speed>1.6</speed>
-					<bullet/>
-				</fire>
-				<wait>2-$rank+$rand</wait>
+				<repeat>
+					<times>200+$rank*200</times>
+					<action>
+						<fire>
+							<direction type="aim">-50+$rand*100</direction>
+							<speed>1.6</speed>
+							<bullet/>
+						</fire>
+						<wait>2-$rank+$rand</wait>
+					</action>
+				</repeat>
 			</action>
 		</repeat>
 	</action>
@@ -42,57 +47,63 @@
 
 	<action label="top2">
 		<repeat>
-			<times>8+$rank*8</times>
+			<times>2</times> <!-- Loop 2 vezes -->
 			<action>
-				<fire>
-					<direction type="aim">80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>(16-$rank*8)*3</param>
-					</bulletRef>
-				</fire>
-				<fire>
-					<direction type="aim">-80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>(16+$rank*8)*3</param>
-					</bulletRef>
-				</fire>
-				<wait>16-$rank*8</wait>
-				<fire>
-					<direction type="aim">80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>(16-$rank*8)*2</param>
-					</bulletRef>
-				</fire>
-				<fire>
-					<direction type="aim">-80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>(16-$rank*8)*2</param>
-					</bulletRef>
-				</fire>
-				<wait>16-$rank*8</wait>
-				<fire>
-					<direction type="aim">80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>16-$rank*8</param>
-					</bulletRef>
-				</fire>
-				<fire>
-					<direction type="aim">-80</direction>
-					<speed>1.5</speed>
-					<bulletRef label="kobati">
-						<param>16-$rank*8</param>
-					</bulletRef>
-				</fire>
-				<wait>16-$rank*8</wait>
+				<repeat>
+					<times>8+$rank*8</times>
+					<action>
+						<fire>
+							<direction type="aim">80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>(16-$rank*8)*3</param>
+							</bulletRef>
+						</fire>
+						<fire>
+							<direction type="aim">-80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>(16+$rank*8)*3</param>
+							</bulletRef>
+						</fire>
+						<wait>16-$rank*8</wait>
+						<fire>
+							<direction type="aim">80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>(16-$rank*8)*2</param>
+							</bulletRef>
+						</fire>
+						<fire>
+							<direction type="aim">-80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>(16-$rank*8)*2</param>
+							</bulletRef>
+						</fire>
+						<wait>16-$rank*8</wait>
+						<fire>
+							<direction type="aim">80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>16-$rank*8</param>
+							</bulletRef>
+						</fire>
+						<fire>
+							<direction type="aim">-80</direction>
+							<speed>1.5</speed>
+							<bulletRef label="kobati">
+								<param>16-$rank*8</param>
+							</bulletRef>
+						</fire>
+						<wait>16-$rank*8</wait>
+					</action>
+				</repeat>
+
+				<wait>120</wait>
 			</action>
 		</repeat>
 
-		<wait>120</wait>
 	</action>
 
 </bulletml>
