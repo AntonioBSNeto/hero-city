@@ -1,7 +1,4 @@
-﻿// Copyright © 2014 Pixelnest Studio
-// This file is subject to the terms and conditions defined in
-// file 'LICENSE.md', which is part of this source code package.
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 namespace Pixelnest.BulletML.Demo
@@ -10,9 +7,11 @@ namespace Pixelnest.BulletML.Demo
   {
     public int hp = 100;
     public float speed = 2f;
+    public GameObject[] powerUpPrefabs; // Array de prefabs de power-ups
 
     private Vector3 movementTarget;
     private DemoFightScript demo;
+    private BossManager bossManager;
 
     private Collider2D col2d;
 
@@ -25,6 +24,7 @@ namespace Pixelnest.BulletML.Demo
     {
       NewMoveTarget();
       demo = FindObjectOfType<DemoFightScript>();
+      bossManager = FindObjectOfType<BossManager>();
     }
 
     void Update()
@@ -57,17 +57,41 @@ namespace Pixelnest.BulletML.Demo
 
       if (playerShot != null)
       {
-        hp--;
+        hp -= playerShot.damage;
 
-        DestroyObject(playerShot.gameObject);
+        Destroy(playerShot.gameObject);
 
         // Flash red
         StartCoroutine(FlashRed());
 
-        if (hp == 0)
+        if (hp <= 0)
         {
-          Destroy(this.gameObject);
+          StartCoroutine(HandleBossDeath());
         }
+      }
+    }
+
+    private IEnumerator HandleBossDeath()
+    {
+      yield return new WaitForSeconds(0.05f); // Pequeno delay para o efeito de flash
+
+      DropPowerUp();
+
+      if (bossManager != null)
+      {
+        bossManager.OnBossDeath();
+      }
+
+      Destroy(this.gameObject);
+    }
+
+    private void DropPowerUp()
+    {
+      if (powerUpPrefabs.Length > 0)
+      {
+        int randomIndex = Random.Range(0, powerUpPrefabs.Length);
+        GameObject powerUp = Instantiate(powerUpPrefabs[randomIndex], transform.position, Quaternion.identity);
+        powerUp.AddComponent<FloatingPowerUp>();
       }
     }
 
