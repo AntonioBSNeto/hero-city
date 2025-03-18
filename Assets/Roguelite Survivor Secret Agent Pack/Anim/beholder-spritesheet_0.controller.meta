@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 575681c5643af3148af7a238602276c4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249940
+  packageName: Roguelite Survivor Secret Agent Pack
+  packageVersion: 1.0
+  assetPath: Assets/Roguelite Survivor Secret Agent Pack/Anim/beholder-spritesheet_0.controller
+  uploadId: 570964

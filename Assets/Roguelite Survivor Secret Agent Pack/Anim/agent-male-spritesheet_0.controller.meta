@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8411795ff23c33046984d5ff52138e82
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249940
+  packageName: Roguelite Survivor Secret Agent Pack
+  packageVersion: 1.0
+  assetPath: Assets/Roguelite Survivor Secret Agent Pack/Anim/agent-male-spritesheet_0.controller
+  uploadId: 570964

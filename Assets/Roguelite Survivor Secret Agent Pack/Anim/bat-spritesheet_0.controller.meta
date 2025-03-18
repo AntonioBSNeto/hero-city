@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b78aff53413feb4c91db6d12d54e4f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249940
+  packageName: Roguelite Survivor Secret Agent Pack
+  packageVersion: 1.0
+  assetPath: Assets/Roguelite Survivor Secret Agent Pack/Anim/bat-spritesheet_0.controller
+  uploadId: 570964
