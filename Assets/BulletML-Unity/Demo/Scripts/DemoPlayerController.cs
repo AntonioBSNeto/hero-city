@@ -42,6 +42,7 @@ namespace Pixelnest.BulletML.Demo
     public int projectileDamage3 = 1;
 
     private PowerUpManager powerUpManager;
+    private GameSceneManager sceneManager;
 
     void Awake()
     {
@@ -49,6 +50,7 @@ namespace Pixelnest.BulletML.Demo
       currentHP = maxHP;
       demo = FindObjectOfType<DemoFightScript>();
       powerUpManager = FindObjectOfType<PowerUpManager>();
+      sceneManager = FindObjectOfType<GameSceneManager>();
 
       rbody2d = GetComponent<Rigidbody2D>();
     }
@@ -200,7 +202,8 @@ namespace Pixelnest.BulletML.Demo
       // Handle player death
       Debug.Log("Player died!");
       Destroy(gameObject);
-      // Add additional logic for player death, such as restarting the level
+      // Transitar para a cena HighScore após 3 segundos
+      sceneManager.LoadHighScoreAfterDelay(3f);
     }
 
     private IEnumerator FlashRed()

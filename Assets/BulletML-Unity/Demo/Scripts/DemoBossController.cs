@@ -12,6 +12,7 @@ namespace Pixelnest.BulletML.Demo
     private Vector3 movementTarget;
     private DemoFightScript demo;
     private BossManager bossManager;
+    private GameSceneManager sceneManager;
 
     private Collider2D col2d;
 
@@ -25,6 +26,7 @@ namespace Pixelnest.BulletML.Demo
       NewMoveTarget();
       demo = FindObjectOfType<DemoFightScript>();
       bossManager = FindObjectOfType<BossManager>();
+      sceneManager = FindObjectOfType<GameSceneManager>();
     }
 
     void Update()
@@ -82,7 +84,12 @@ namespace Pixelnest.BulletML.Demo
         bossManager.OnBossDeath();
       }
 
+      ScoreManager.instance.AddScore(100); // Adiciona 100 pontos ao score
+
       Destroy(this.gameObject);
+
+      // Transitar para a cena HighScore após 3 segundos
+      sceneManager.LoadHighScoreAfterDelay(3f);
     }
 
     private void DropPowerUp()

@@ -64,6 +64,10 @@ namespace Pixelnest.BulletML.Demo
         if (enemy != null)
         {
           enemy.TakeDamage(damage);
+          if (enemy.life <= 0)
+          {
+            ScoreManager.instance.AddScore(10); // Adiciona 10 pontos ao score
+          }
         }
         Destroy(gameObject);
       }
