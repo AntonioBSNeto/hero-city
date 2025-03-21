@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         currentHP = maxHP;
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
+
+        FlipSpriteBasedOnMousePosition();
     }
 
     void FixedUpdate()
@@ -52,6 +56,19 @@ public class PlayerController : MonoBehaviour
             int damage = collision.gameObject.GetComponent<EnemyBullet>().damage;
             TakeDamage(damage);
             Destroy(collision.gameObject); // Destroy the bullet after it hits the player
+        }
+    }
+
+    void FlipSpriteBasedOnMousePosition()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x > transform.position.x)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
         }
     }
 }

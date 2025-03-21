@@ -96,7 +96,7 @@ namespace Pixelnest.BulletML.Demo
 
     void FixedUpdate()
     {
-      rbody2d.velocity = movement;
+      rbody2d.linearVelocity = movement;
     }
 
     void OnTriggerEnter2D(Collider2D otherCollider)
