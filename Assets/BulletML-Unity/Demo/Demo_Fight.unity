@@ -287,7 +287,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8da3eb79feebe94590cdd46947c99b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -391,6 +391,10 @@ MonoBehaviour:
   - {fileID: 7817706394465487909, guid: a93aece4d1b71459c979f8d8be81d1ed, type: 3}
   - {fileID: 7817706394465487909, guid: d7549775bb4ff4a5b8c3d5e61454a345, type: 3}
   - {fileID: 7817706394465487909, guid: 43408d1a4cd4642e8b5291cb147ab7f8, type: 3}
+  spawnSound: {fileID: 8300000, guid: 9b594bea12c14124ea04a2de4be10849, type: 3}
+  explosionVFX: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  explosionSound: {fileID: 8300000, guid: 30d673cc9b868534785d202304bfb3a7, type: 3}
+  impactSound: {fileID: 8300000, guid: 0fec30152ac5b4a4087caf8f8115b520, type: 3}
 --- !u!1 &422786591
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,12 +427,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c34de7e48637974995bee21e639018d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 75
+  hp: 50
   speed: 1
   powerUpPrefabs:
   - {fileID: 7817706394465487909, guid: a93aece4d1b71459c979f8d8be81d1ed, type: 3}
   - {fileID: 7817706394465487909, guid: d7549775bb4ff4a5b8c3d5e61454a345, type: 3}
   - {fileID: 7817706394465487909, guid: 43408d1a4cd4642e8b5291cb147ab7f8, type: 3}
+  spawnSound: {fileID: 8300000, guid: c3aaea08d18c3484599d4b31c232ed4d, type: 3}
+  explosionVFX: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  explosionSound: {fileID: 8300000, guid: 30d673cc9b868534785d202304bfb3a7, type: 3}
+  impactSound: {fileID: 8300000, guid: 0fec30152ac5b4a4087caf8f8115b520, type: 3}
 --- !u!61 &422786593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -518,7 +526,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8da3eb79feebe94590cdd46947c99b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -602,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263fc5a8aea07468e9e959c2b72c8dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highScoreText: {fileID: 0}
 --- !u!1 &575131035
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bf77da30fc1a87b4989988a277be5991, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -738,7 +747,13 @@ MonoBehaviour:
   projectilePrefab1: {fileID: 100000, guid: a7ec66125d6ee4d41820d9ae37e83e04, type: 3}
   projectilePrefab2: {fileID: 100000, guid: 5b426d55a53bf48a9843cadd0a5e16c1, type: 3}
   projectilePrefab3: {fileID: 100000, guid: 699b0264aed60463bb1c3f9e7fb3a0a1, type: 3}
-  maxHP: 30
+  shootSound1: {fileID: 8300000, guid: 01fd566401477da4d81a42c8f31b507e, type: 3}
+  shootSound2: {fileID: 8300000, guid: 0cf45749d239af64b9771f7941c5deca, type: 3}
+  shootSound3: {fileID: 8300000, guid: ea86277161541264080d7e9db3a18476, type: 3}
+  maxHP: 40
+  explosionVFX: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  explosionSound: {fileID: 8300000, guid: 7056ca7b010d075498318af7a27a3509, type: 3}
+  impactSound: {fileID: 8300000, guid: 89d1f80f8e6027f429fa5bc80ad739a9, type: 3}
   projectileSpeed1: 25
   projectileSpeed2: 10
   projectileSpeed3: 20
@@ -841,6 +856,93 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468679450}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &628348933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628348935}
+  - component: {fileID: 628348934}
+  m_Layer: 0
+  m_Name: demo04_PixelSky_1920x1080
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &628348934
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628348933}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1efc14524702f8c4694fc4697517592f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.2, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &628348935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628348933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143538531
 GameObject:
@@ -6001,12 +6103,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c34de7e48637974995bee21e639018d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 75
+  hp: 100
   speed: 1
   powerUpPrefabs:
   - {fileID: 7817706394465487909, guid: a93aece4d1b71459c979f8d8be81d1ed, type: 3}
   - {fileID: 7817706394465487909, guid: d7549775bb4ff4a5b8c3d5e61454a345, type: 3}
   - {fileID: 7817706394465487909, guid: 43408d1a4cd4642e8b5291cb147ab7f8, type: 3}
+  spawnSound: {fileID: 8300000, guid: 25b0f1daa9ca8f34bb4d08a27d78ff4d, type: 3}
+  explosionVFX: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  explosionSound: {fileID: 8300000, guid: 30d673cc9b868534785d202304bfb3a7, type: 3}
+  impactSound: {fileID: 8300000, guid: 0fec30152ac5b4a4087caf8f8115b520, type: 3}
 --- !u!61 &1915601853
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6096,7 +6202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f8da3eb79feebe94590cdd46947c99b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6282,3 +6388,4 @@ SceneRoots:
   - {fileID: 1143538536}
   - {fileID: 575131037}
   - {fileID: 1468679450}
+  - {fileID: 628348935}

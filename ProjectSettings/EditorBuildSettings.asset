@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/BulletML-Unity/Demo/MainMenu.unity
+    guid: 94aca5493c86648b38bf6a05d38718aa
+  - enabled: 1
+    path: Assets/BulletML-Unity/Demo/Demo_Fight.unity
+    guid: 617e5cc1e53f95045977f3bdae599e73
+  - enabled: 1
+    path: Assets/BulletML-Unity/Demo/HighScore.unity
+    guid: ef6157706f8e54258af9a3d00bc1587a
+  - enabled: 0
     path: Assets/Scenes/SceneWithEnemy.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
