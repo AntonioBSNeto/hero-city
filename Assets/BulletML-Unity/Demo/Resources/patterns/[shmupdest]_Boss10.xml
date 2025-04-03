@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml type="horizontal" xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+  <action label="top">
+    <repeat>
+      <!-- The main loop, until the boss is destroyed -->
+      <times>99999</times>
+      <action>
+        <repeat>
+          <times>10 + 10*$rank</times>
+          <action>
+            <!-- Circle-->
+            <actionRef label="boomerang_spiral">
+              <param>40</param>
+              <param>4</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait>
+
+            <actionRef label="circle">
+              <param>$rand * 10 + 15 + 10 * $rank</param>
+              <param>-10</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait>
+
+            <actionRef label="shot">
+              <param>45</param>
+            </actionRef>
+            <actionRef label="shot">
+              <param>-45</param>
+            </actionRef>
+            <actionRef label="shot">
+              <param>90</param>
+            </actionRef>
+            <actionRef label="shot">
+              <param>-90</param>
+            </actionRef>
+
+          </action>
+        </repeat>
+        <wait>120 - 60 * $rank</wait>
+        <!-- -->
+      </action>
+    </repeat>
+  </action>
+
+  <action label="circle">
+    <repeat>
+      <times>$1</times>
+      <action>
+        <fire>
+          <direction type="sequence">$2</direction>
+          <speed>0.25 + 0.25 * $rank</speed>
+          <bullet label="boss5_bullet" />
+        </fire>
+        <wait>1</wait>
+      </action>
+    </repeat>
+  </action>
+
+  <action label="shot">
+
+    <repeat>
+      <times>1 + 2*$rank</times>
+      <action>
+        <fire>
+          <direction>$1</direction>
+          <bulletRef label="boss5_homing"></bulletRef>
+        </fire>
+      </action>
+    </repeat>
+  </action>
+
+  <action label="boomerang_spiral">
+    <repeat>
+      <times>$1</times> <!-- Número de balas (Parâmetro 1) -->
+      <action>
+        <fire>
+          <direction type="sequence">360 / $1</direction> <!-- Divide 360° pelo número de balas -->
+          <speed>$2</speed> <!-- Velocidade inicial (Parâmetro 2) -->
+          <bullet label="boss_boomerang_bullet">
+            <action>
+              <wait>300</wait> <!-- Tempo antes de reverter -->
+              <changeSpeed>
+                <speed>-0.4</speed> <!-- Bala inverte direção -->
+                <term>15</term>
+              </changeSpeed>
+              <wait>600</wait> <!-- Tempo antes de desaparecer -->
+              <vanish />
+            </action>
+          </bullet>
+        </fire>
+      </action>
+    </repeat>
+    <wait>50</wait>
+  </action>
+
+  <bullet label="boss5_homing">
+    <speed>1</speed>
+    <action>
+      <changeSpeed>
+        <speed>0.01</speed>
+        <term>20 + $rand * 20</term>
+      </changeSpeed>
+      <wait>30</wait>
+      <fire>
+        <direction type="aim">15 - (30 * $rand)</direction>
+        <speed>0.5 + 0.8 * $rank</speed>
+        <bulletRef label="boss5_shot"></bulletRef>
+      </fire>
+      <vanish />
+    </action>
+  </bullet>
+
+  <bullet label="boss5_bullet">
+  </bullet>
+
+  <bullet label="boss5_shot">
+  </bullet>
+
+</bulletml>

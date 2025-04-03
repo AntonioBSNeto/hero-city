@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml type="horizontal" xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+  <action label="top">
+    <repeat>
+      <!-- The main loop, until the boss is destroyed -->
+      <times>99999</times>
+      <action>
+        <repeat>
+          <times>5</times> <!-- Dispara 30 projéteis -->
+          <action>
+            <actionRef label="targeted_shower"/>  <!-- Ambos são chamados juntos -->
+            <actionRef label="targeted_shower"/>  <!-- Ambos são chamados juntos -->
+            <actionRef label="chaotic_cross"/>  <!-- Ambos são chamados juntos -->
+            <wait>5</wait> <!-- Pequena espera para evitar sobrecarga -->
+          </action>
+        </repeat>
+        <wait>60</wait>
+      </action>
+    </repeat>
+  </action>
+
+  <action label="targeted_shower">
+    <fire>
+      <direction type="aim"/> <!-- Todas as balas miram no jogador -->
+      <speed>2.5</speed> <!-- Velocidade ajustável -->
+      <bullet label="targeted_bullet"/>
+    </fire>
+    <wait>5</wait>
+  </action>
+
+  <action label="chaotic_cross">
+    <repeat>
+      <times>32</times> <!-- Aumentei de 4 para 8 disparos -->
+      <action>
+        <fire>
+          <direction type="sequence">45</direction> <!-- Ângulo reduzido para maior cobertura -->
+          <speed>0.5 + 0.3 * $rank</speed> <!-- Aumentei a velocidade -->
+          <bullet label="cross_bullet">
+            <action>
+              <wait>10</wait> <!-- Reduzi o tempo de espera antes de mudar de direção -->
+              <changeDirection>
+                <direction type="sequence">40 - 80 * $rand</direction> <!-- Mais variação na direção -->
+                <term>3</term> <!-- Mudança de direção mais rápida -->
+              </changeDirection>
+            </action>
+          </bullet>
+        </fire>
+      </action>
+    </repeat>
+    <wait>30</wait> <!-- Tempo reduzido para um ataque mais frenético -->
+  </action>
+
+</bulletml>
