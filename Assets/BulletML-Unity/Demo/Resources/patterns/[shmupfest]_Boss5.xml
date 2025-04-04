@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml type="horizontal" xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+  <action label="top">
+    <repeat>
+      <!-- The main loop, until the boss is destroyed -->
+      <times>99999</times>
+      <action>
+        <repeat>
+          <times>10 + 10*$rank</times>
+          <action>
+            <actionRef label="random_burst">
+              <param>$rand * 10 + 15 + 10 * $rank</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait>
+
+             <actionRef label="fan_spread">
+              <param>$rand * 10 + 15 + 10 * $rank</param>
+              <param>15</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait>
+
+            <!-- Circle-->
+            <!-- <actionRef label="circle">
+              <param>$rand * 10 + 15 + 10 * $rank</param>
+              <param>-10</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait> -->
+
+            <!-- Homing shots -->
+            <actionRef label="shot">
+              <param>90</param>
+            </actionRef>
+            <actionRef label="shot">
+              <param>-90</param>
+            </actionRef>
+
+            <!-- Circle -->
+            <!-- <actionRef label="circle">
+              <param>$rand * 10 + 15+ 10 * $rank</param>
+              <param>10</param>
+            </actionRef>
+            <wait>30- 20 * $rank</wait> -->
+          </action>
+        </repeat>
+        <wait>120 - 60 * $rank</wait>
+        <!-- -->
+      </action>
+    </repeat>
+  </action>
+
+  <action label="random_burst">
+    <!-- Random Burst Pattern -->
+    <repeat>
+      <times>$1</times>
+      <action>
+        <fire>
+          <direction type="relative">($rand * 360)</direction>
+          <speed>0.8 + ($rand * 1.2)</speed>
+          <bullet label="boss5_bullet" />
+        </fire>
+        <wait>5</wait>
+      </action>
+    </repeat>
+  </action>
+
+  <action label="fan_spread">
+    <!-- Fan Spread Pattern -->
+    <repeat>
+      <times>1</times>
+      <action>
+        <repeat>
+          <times>$1</times>
+          <action>
+            <fire>
+              <direction type="sequence">$2</direction>
+              <speed>1.0 + 0.3 * $rank</speed>
+              <bullet label="boss5_bullet" />
+            </fire>
+          </action>
+        </repeat>
+        <wait>10</wait>
+      </action>
+      <action>
+        <repeat>
+          <times>$1</times>
+          <action>
+            <fire>
+              <direction type="sequence">-$2</direction>
+              <speed>1.0 + 0.3 * $rank</speed>
+              <bullet label="boss5_bullet" />
+            </fire>
+          </action>
+        </repeat>
+        <wait>10</wait>
+      </action>
+    </repeat>
+</action>
+
+  <action label="circle">
+    <repeat>
+      <times>$1</times>
+      <action>
+        <fire>
+          <direction type="sequence">$2</direction>
+          <speed>0.25 + 0.25 * $rank</speed>
+          <bullet label="boss5_bullet" />
+        </fire>
+        <wait>1</wait>
+      </action>
+    </repeat>
+  </action>
+
+  <action label="shot">
+
+    <repeat>
+      <times>1 + 2*$rank</times>
+      <action>
+        <fire>
+          <direction>$1</direction>
+          <bulletRef label="boss5_homing"></bulletRef>
+        </fire>
+      </action>
+    </repeat>
+  </action>
+
+  <bullet label="boss5_homing">
+    <speed>1</speed>
+    <action>
+      <changeSpeed>
+        <speed>0.01</speed>
+        <term>20 + $rand * 20</term>
+      </changeSpeed>
+      <wait>30</wait>
+      <fire>
+        <direction type="aim">15 - (30 * $rand)</direction>
+        <speed>0.5 + 0.8 * $rank</speed>
+        <bulletRef label="boss5_shot"></bulletRef>
+      </fire>
+      <vanish />
+    </action>
+  </bullet>
+
+  <bullet label="boss5_bullet">
+  </bullet>
+
+  <bullet label="boss5_shot">
+  </bullet>
+
+</bulletml>
